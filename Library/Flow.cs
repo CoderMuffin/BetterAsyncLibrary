@@ -56,7 +56,33 @@ namespace BetterAsync
         /// <param name="until">The condition to evaluate.</param>
         public static void WaitUntil(Func<bool> until)
         {
-            while (!until()) { }
+            while (!until()) { Wait(10); }
+        }
+        /// <summary>
+        /// Pause the current <see cref="Flow"/> until the condition evaluates to <see langword="true"/>.
+        /// </summary>
+        /// <param name="until">The condition to evaluate.</param>
+        /// <param name="interval">The interval between checking the condition.</param>
+        public static void WaitUntil(Func<bool> until, uint interval)
+        {
+            while (!until()) { Wait(interval); }
+        }
+        /// <summary>
+        /// Pause the current <see cref="Flow"/> until the condition evaluates to <see langword="false"/>.
+        /// </summary>
+        /// <param name="until">The condition to evaluate.</param>
+        /// <param name="interval">The interval between checking the condition.</param>
+        public static void WaitWhile(Func<bool> until, uint interval)
+        {
+            while (!until()) { Wait(interval); }
+        }
+        /// <summary>
+        /// Pause the current <see cref="Flow"/> until the condition evaluates to <see langword="false"/>.
+        /// </summary>
+        /// <param name="until">The condition to evaluate.</param>
+        public static void WaitWhile(Func<bool> until)
+        {
+            while (!until()) { Wait(10); }
         }
         /// <summary>
         /// Pause the <see cref="Flow"/> for the specified number of milliseconds.

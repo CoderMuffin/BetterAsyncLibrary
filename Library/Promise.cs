@@ -22,6 +22,7 @@ namespace BetterAsync
     /// <typeparam name="T">The type that the <see cref="Promise{T}"/> resolves to.</typeparam>
     public class Promise<T>
     {
+        public event Action<T> OnResolved;
         TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
         Flow actionFlow;
         /// <summary>
@@ -46,12 +47,22 @@ namespace BetterAsync
         /// <summary>
         /// Resolves the <see cref="Promise{T}"/>. The <see cref="Promise{T}"/> will stop awaiting and return the value.
         /// </summary>
-        /// <param name="result">The value to return</param>
+        /// <param name="result">The value to return.</param>
         public void Resolve(T result)
         {
+            OnResolved?.Invoke(result);
             actionFlow.Stop();
             tcs.SetResult(result);
         }
+        /// <summary>
+        /// Callback when the <see cref="Promise{T}"/> is resolved.
+        /// </summary>
+        /// <param name="callback">The method to call.</param>
+        public void Then(Action<T> callback)
+        {
+            OnResolved += callback;
+        }
+
         /// <summary>
         /// The <see cref="TaskAwaiter{TResult}"/> for the <see cref="Promise{T}"/>.
         /// </summary>
