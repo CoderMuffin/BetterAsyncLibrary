@@ -1,5 +1,5 @@
 # BetterAsyncLibrary
-## MANY PARTS OF THIS REPOSITORY ARE OBSOLETE, PLEASE SEE THE NOTICE AT THE TOP OF https://www.johnlikestocode.co.uk/betterasync/
+## PARTS OF THIS REPOSITORY ARE OBSOLETE, PLEASE SEE THE NOTICE AT THE TOP OF https://www.johnlikestocode.co.uk/betterasync/
 
 An alternative version of Microsoft's async, featuring JS style promises, Go style channels and more.  Docstrings included :)
 
